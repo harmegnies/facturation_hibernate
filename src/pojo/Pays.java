@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pays", catalog = "facturationmf")
 public class Pays implements Serializable {
-  private Integer idPays = 0;
-  private String nomPays = null;
+  private Integer idPays;
+  private String nomPays;
   private Set<Adresse> adresses = new HashSet<Adresse>(0);
   
   public Pays(){

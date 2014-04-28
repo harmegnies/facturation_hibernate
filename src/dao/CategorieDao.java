@@ -31,7 +31,7 @@ public class CategorieDao extends Dao<Categorie,Integer> {
 		@Override
 		public void insert(Categorie obj) throws MyException {
 			// TODO Auto-generated method stub
-			if ( obj.getIdCategorie().intValue() == 0 ){
+			if ( obj.getIdCategorie() == null || obj.getIdCategorie().intValue() == 0 ){
 				String sql = "INSERT INTO categorie VALUES(NULL,?);";
 				ResultSet rsKey = null;
 				// try avec ressources à partir de 1.7
@@ -63,7 +63,7 @@ public class CategorieDao extends Dao<Categorie,Integer> {
 			try (PreparedStatement pst = this.conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
 				conn.setAutoCommit(false);				
 				for ( int i = 0; i < obj.length; i++ ){
-					if ( obj[i].getIdCategorie().intValue() == 0 ){
+					if (obj[i].getIdCategorie() == null ||  obj[i].getIdCategorie().intValue() == 0 ){
 						pst.setString(1, obj[i].getNomCategorie());
 						pst.executeUpdate();
 						rsKey = pst.getGeneratedKeys();
@@ -110,7 +110,7 @@ public class CategorieDao extends Dao<Categorie,Integer> {
 	@Override
 	public void update(Categorie obj) throws MyException {
 		// TODO Auto-generated method stub
-		if ( obj.getIdCategorie().intValue() != 0 ){
+		if ( obj.getIdCategorie() != null && obj.getIdCategorie().intValue() != 0 ){
 			String sql = "UPDATE categorie SET nomCategorie = ? WHERE idCategorie = ?;";
 			try ( PreparedStatement pst = this.conn.prepareStatement(sql) ){
 				pst.setString(1, obj.getNomCategorie());
@@ -129,7 +129,7 @@ public class CategorieDao extends Dao<Categorie,Integer> {
 	@Override
 	public void delete(Categorie obj) throws MyException {
 		// TODO Auto-generated method stub
-		if ( obj.getIdCategorie().intValue() != 0 ){
+		if ( obj.getIdCategorie() != null && obj.getIdCategorie().intValue() != 0 ){
 			String sql = "DELETE FROM categorie WHERE idCategorie = ?;";
 			try (PreparedStatement pst = this.conn.prepareStatement(sql)){
 				pst.setInt(1,obj.getIdCategorie());

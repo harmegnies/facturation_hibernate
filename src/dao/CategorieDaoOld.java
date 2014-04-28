@@ -12,6 +12,7 @@ import java.util.List;
 import pojo.Categorie;
 import connexion.MyException;
 
+// version n'utilisant pas des try avec ressources valable depuis 1.7 pour l'auto-closure
 public class CategorieDaoOld extends Dao<Categorie,Integer> {
 
 	public CategorieDaoOld(Connection conn) {

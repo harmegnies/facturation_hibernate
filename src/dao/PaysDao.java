@@ -31,7 +31,7 @@ public class PaysDao extends Dao<Pays,Integer> {
 		@Override
 		public void insert(Pays obj) throws MyException {
 			// TODO Auto-generated method stub
-			if ( obj.getIdPays().intValue() == 0 ){
+			if ( obj.getIdPays()  == null || obj.getIdPays().intValue() == 0 ){
 				String sql = "INSERT INTO pays VALUES(NULL,?);";
 				ResultSet rsKey = null;
 				try (PreparedStatement pst = this.conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -63,7 +63,7 @@ public class PaysDao extends Dao<Pays,Integer> {
 				conn.setAutoCommit(false);	
 				// faire une boucle sur le tableau de Pays
 				for ( int i = 0; i < obj.length; i++ ){
-					if ( obj[i].getIdPays().intValue() == 0 ){
+					if ( obj[i].getIdPays()  == null || obj[i].getIdPays().intValue() == 0 ){
 						pst.setString(1, obj[i].getNomPays());
 						pst.executeUpdate();
 						rsKey = pst.getGeneratedKeys();
@@ -115,8 +115,10 @@ public class PaysDao extends Dao<Pays,Integer> {
 						conn.setAutoCommit(false);					
 					// faire une boucle sur le tableau de Pays
 					for ( int i = 0; i < obj.length; i++ ){
-						if ( obj[i].getIdPays().intValue() == 0 ){
-							this.insert(obj[i]); // appel de la méthode insert de la classe PaysDao
+						if ( obj[i].getIdPays()  == null ||  obj[i].getIdPays().intValue() == 0 ){
+							this.insert(obj[i]); 
+							// appel de la méthode insert de la classe PaysDao
+							// préférence à la méthode insert
 						}
 						else {
 							throw new SQLException("un objet Pays a déjà été sauvegardé");
@@ -150,7 +152,7 @@ public class PaysDao extends Dao<Pays,Integer> {
 	@Override
 	public void update(Pays obj) throws MyException {
 		// TODO Auto-generated method stub
-		if ( obj.getIdPays().intValue() != 0 ){
+		if ( obj.getIdPays()  != null && obj.getIdPays().intValue() != 0 ){
 			String sql = "UPDATE pays SET nomPays = ? WHERE idPays = ?;";
 			// changer le nom du pays
 			try ( PreparedStatement pst = this.conn.prepareStatement(sql) ){
@@ -170,7 +172,7 @@ public class PaysDao extends Dao<Pays,Integer> {
 	@Override
 	public void delete(Pays obj) throws MyException {
 		// TODO Auto-generated method stub
-		if ( obj.getIdPays().intValue() != 0 ){
+		if ( obj.getIdPays()  != null &&  obj.getIdPays().intValue() != 0 ){
 			String sql = "DELETE FROM pays WHERE idPays = ?;";
 			// supprimer l'enregistrement correspondant au pays
 			try (PreparedStatement pst = this.conn.prepareStatement(sql)){

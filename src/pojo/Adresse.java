@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "adresse", catalog = "facturationmf")
 public class Adresse implements Serializable{
 	
-  private Integer idAdresse = 0;
+  private Integer idAdresse;
   private String rue = null;
   private String numero = null;
   private String zipcode = null;

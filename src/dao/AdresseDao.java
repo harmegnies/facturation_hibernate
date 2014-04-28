@@ -38,7 +38,7 @@ public class AdresseDao extends Dao<Adresse,Integer> {
 		@Override
 		public void insert(Adresse obj) throws MyException {
 			// TODO Auto-generated method stub
-			if ( obj.getIdAdresse().intValue() == 0 ){
+			if (obj.getIdAdresse() == null || obj.getIdAdresse().intValue() == 0 ){
 				
 				// vérifier si l'objet pays de la classe Adresse est null
 				if ( obj.getPays() == null ){
@@ -87,7 +87,7 @@ public class AdresseDao extends Dao<Adresse,Integer> {
 			try (PreparedStatement pst = this.conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS)) {
 				conn.setAutoCommit(false);				
 				for ( int i = 0; i < obj.length; i++ ){
-					if ( obj[i].getIdAdresse().intValue() == 0 ){
+					if ( obj[i].getIdAdresse() == null || obj[i].getIdAdresse().intValue() == 0 ){
 						pst.setString(1, obj[i].getNumero());
 						pst.setString(2, obj[i].getRue());
 						pst.setString(3, obj[i].getVille());
@@ -142,7 +142,7 @@ public class AdresseDao extends Dao<Adresse,Integer> {
 					conn.setAutoCommit(false);					
 				// faire une boucle sur le tableau de Pays
 				for ( int i = 0; i < obj.length; i++ ){
-					if ( obj[i].getIdAdresse().intValue() == 0 ){
+					if ( obj[i].getIdAdresse() == null ||  obj[i].getIdAdresse().intValue() == 0 ){
 						this.insert(obj[i]); // appel de la méthode insert de la classe PaysDao
 					}
 					else {
@@ -177,7 +177,7 @@ public class AdresseDao extends Dao<Adresse,Integer> {
 	@Override
 	public void update(Adresse obj) throws MyException {
 		// TODO Auto-generated method stub
-		if ( obj.getIdAdresse().intValue() != 0 ){
+		if (  obj.getIdAdresse() != null && obj.getIdAdresse().intValue() != 0 ){
 			String sql = "UPDATE adresse SET numero = ?,rue = ?, ville = ?, zipCode = ?, pays_idPays = ?  WHERE idAdresse = ?;";
 			try ( PreparedStatement pst = this.conn.prepareStatement(sql) ){
 				pst.setString(1, obj.getNumero());
@@ -208,7 +208,7 @@ public class AdresseDao extends Dao<Adresse,Integer> {
 	@Override
 	public void delete(Adresse obj) throws MyException {
 		// TODO Auto-generated method stub
-		if ( obj.getIdAdresse().intValue() != 0 ){
+		if ( obj.getIdAdresse() != null && obj.getIdAdresse().intValue() != 0 ){
 			String sql = "DELETE FROM adresse WHERE idAdresse = ?;";
 			try (PreparedStatement pst = this.conn.prepareStatement(sql)){
 				pst.setInt(1,obj.getIdAdresse());
