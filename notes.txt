@@ -3,14 +3,4 @@ facturation_hibernate
 cet exercice a été réalisé dans le cadre d'une formation bachelier en info (Promotion sociale Belgique)
 a) modélisation Merise pour la base de données MCD-MLD-MPD
 b) création du diagramme de classes UML en rapport avec l'analyse Database
-c) utilisation des annotations Hibernate pour le mapping classes - tables
-d) illustration des différentes associations rencontrées dans une application
-e) autre technique: utilisation du Design pattern Dao pour la persistance des données
-f) création d'interfaces avec swing
-
-L'objectif:
-donner une méthodologie de travail aux étudiants
-
-à suivre
-(ce document sera réactualisé suite à l'évolution du travail)
-bien à vous
+c) utilisation des annotations Hibernate pour le 
