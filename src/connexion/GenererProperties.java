@@ -10,7 +10,7 @@ public class GenererProperties {
 	/*
 	 * code qui va créer un objet Properties et qui va sauvegarder les renseignements dans un fichier texte
 	 */
-
+	//jhgjhgj
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
